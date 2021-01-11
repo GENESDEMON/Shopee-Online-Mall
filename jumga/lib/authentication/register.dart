@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jumga/authentication/register.dart';
+import 'package:jumga/authentication/login.dart';
 import 'package:jumga/utils/margin.dart';
 
-class Login extends StatefulWidget {
+class Register extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _RegisterState createState() => _RegisterState();
 }
 
 //Welcome headers widget
 Widget headers() {
   return Container(
     child: Padding(
-      padding: const EdgeInsets.fromLTRB(43, 270, 0, 0),
+      padding: const EdgeInsets.fromLTRB(43, 200, 0, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Welcome",
+            "Hey",
             style: GoogleFonts.roboto(
                 color: Color(0xff141421),
                 fontSize: 48,
                 fontWeight: FontWeight.w900),
           ),
           Text(
-            "Back!",
+            "Welcome!",
             style: GoogleFonts.roboto(
                 color: Color(0xff141421),
                 fontSize: 48,
@@ -43,6 +43,27 @@ Widget input() {
       padding: const EdgeInsets.fromLTRB(43, 0, 43, 0),
       child: Column(
         children: [
+          //Fullname
+          TextField(
+            decoration: InputDecoration(
+                filled: true,
+                fillColor: Color(0xffC4C4C4).withOpacity(0.21),
+                contentPadding: const EdgeInsets.all(19),
+                hintText: 'Full Name',
+                hintStyle: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color(0xffC4C4C4).withOpacity(0.21),
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                )),
+          ),
+          const Yheight(20),
           //Email Address
           TextField(
             decoration: InputDecoration(
@@ -50,6 +71,27 @@ Widget input() {
                 fillColor: Color(0xffC4C4C4).withOpacity(0.21),
                 contentPadding: const EdgeInsets.all(19),
                 hintText: 'Email address',
+                hintStyle: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color(0xffC4C4C4).withOpacity(0.21),
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                )),
+          ),
+          const Yheight(20),
+          //Phone Number
+          TextField(
+            decoration: InputDecoration(
+                filled: true,
+                fillColor: Color(0xffC4C4C4).withOpacity(0.21),
+                contentPadding: const EdgeInsets.all(19),
+                hintText: 'Phone Number',
                 hintStyle: TextStyle(
                   color: Colors.grey,
                   fontSize: 13,
@@ -106,7 +148,7 @@ Widget button() {
           child: Padding(
             padding: EdgeInsets.fromLTRB(00.0, 0.0, 0.0, 0.0),
             child: Center(
-                child: Text("LOGIN",
+                child: Text("REGISTER",
                     style: GoogleFonts.roboto(
                         fontSize: 14,
                         fontWeight: FontWeight.w900,
@@ -128,12 +170,12 @@ Widget noaccount(context) {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Register(),
+              builder: (context) => Login(),
             ),
           );
         },
         child: Text(
-          "Don’t have an account? Sign Up",
+          "Already have an account? Sign In",
           style: GoogleFonts.roboto(
               color: Color(0xff141421).withOpacity(0.38),
               fontSize: 13,
@@ -144,8 +186,7 @@ Widget noaccount(context) {
   );
 }
 
-class _LoginState extends State<Login> {
-  @override
+class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
