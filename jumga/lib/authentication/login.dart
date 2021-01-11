@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jumga/authentication/forgotpass.dart';
 import 'package:jumga/authentication/register.dart';
 import 'package:jumga/utils/margin.dart';
 
@@ -8,11 +9,41 @@ class Login extends StatefulWidget {
   _LoginState createState() => _LoginState();
 }
 
+//Forgot Password
+Widget forgotpass(context) {
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.center,
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Forgotpass(),
+            ),
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(250, 0, 0, 0),
+          child: Text(
+            "Forgot Password",
+            style: GoogleFonts.roboto(
+                color: Color(0xff141421).withOpacity(0.38),
+                fontSize: 13,
+                fontWeight: FontWeight.w600),
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
 //Welcome headers widget
 Widget headers() {
   return Container(
     child: Padding(
-      padding: const EdgeInsets.fromLTRB(43, 270, 0, 0),
+      padding: const EdgeInsets.fromLTRB(43, 230, 0, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -155,6 +186,9 @@ class _LoginState extends State<Login> {
           shrinkWrap: true,
           physics: ScrollPhysics(),
           children: <Widget>[
+            const Yheight(50),
+            forgotpass(context),
+            const Yheight(0),
             headers(),
             const Yheight(39),
             input(),
