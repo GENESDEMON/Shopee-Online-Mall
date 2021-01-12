@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jumga/authentication/forgotpass.dart';
 import 'package:jumga/authentication/register.dart';
+import 'package:jumga/tabs/dashboard.dart';
 import 'package:jumga/utils/margin.dart';
 
 class Login extends StatefulWidget {
@@ -121,9 +122,16 @@ Widget input() {
   );
 }
 
-Widget button() {
+Widget button(context) {
   return GestureDetector(
-    onTap: () {},
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Dashboard(),
+        ),
+      );
+    },
     child: Container(
       child: Padding(
         padding: EdgeInsets.only(left: 40, right: 40),
@@ -193,7 +201,7 @@ class _LoginState extends State<Login> {
             const Yheight(39),
             input(),
             const Yheight(39),
-            button(),
+            button(context),
             const Yheight(23),
             noaccount(context)
           ],
