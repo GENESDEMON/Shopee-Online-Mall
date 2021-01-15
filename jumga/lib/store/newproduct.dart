@@ -1,35 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jumga/authentication/login.dart';
-import 'package:jumga/storeauth/register.dart';
+import 'package:jumga/store/account.dart';
+import 'package:jumga/store/dashboard.dart';
 import 'package:jumga/utils/margin.dart';
 
-class Register extends StatefulWidget {
+class Newproduct extends StatefulWidget {
   @override
-  _RegisterState createState() => _RegisterState();
+  _NewproductState createState() => _NewproductState();
 }
 
-//Welcome headers widget
 Widget headers() {
   return Container(
     child: Padding(
-      padding: const EdgeInsets.fromLTRB(43, 170, 0, 0),
+      padding: const EdgeInsets.fromLTRB(43, 0, 0, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Hey",
+            "Create a new product",
             style: GoogleFonts.roboto(
                 color: Color(0xff141421),
-                fontSize: 48,
-                fontWeight: FontWeight.w900),
-          ),
-          Text(
-            "Welcome!",
-            style: GoogleFonts.roboto(
-                color: Color(0xff141421),
-                fontSize: 48,
-                fontWeight: FontWeight.w900),
+                fontSize: 23,
+                fontWeight: FontWeight.w600),
           ),
         ],
       ),
@@ -44,34 +36,13 @@ Widget input() {
       padding: const EdgeInsets.fromLTRB(43, 0, 43, 0),
       child: Column(
         children: [
-          //Fullname
-          TextField(
-            decoration: InputDecoration(
-                filled: true,
-                fillColor: Color(0xffC4C4C4).withOpacity(0.21),
-                contentPadding: const EdgeInsets.all(19),
-                hintText: 'Full Name',
-                hintStyle: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w400,
-                  fontStyle: FontStyle.normal,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Color(0xffC4C4C4).withOpacity(0.21),
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                )),
-          ),
-          const Yheight(20),
           //Email Address
           TextField(
             decoration: InputDecoration(
                 filled: true,
                 fillColor: Color(0xffC4C4C4).withOpacity(0.21),
                 contentPadding: const EdgeInsets.all(19),
-                hintText: 'Email address',
+                hintText: 'Product Name',
                 hintStyle: TextStyle(
                   color: Colors.grey,
                   fontSize: 13,
@@ -86,13 +57,13 @@ Widget input() {
                 )),
           ),
           const Yheight(20),
-          //Phone Number
           TextField(
+            maxLength: 100,
             decoration: InputDecoration(
                 filled: true,
                 fillColor: Color(0xffC4C4C4).withOpacity(0.21),
                 contentPadding: const EdgeInsets.all(19),
-                hintText: 'Phone Number',
+                hintText: 'Short Description',
                 hintStyle: TextStyle(
                   color: Colors.grey,
                   fontSize: 13,
@@ -107,13 +78,12 @@ Widget input() {
                 )),
           ),
           const Yheight(20),
-          //Password
           TextField(
             decoration: InputDecoration(
                 filled: true,
                 fillColor: Color(0xffC4C4C4).withOpacity(0.21),
                 contentPadding: const EdgeInsets.all(19),
-                hintText: 'Password',
+                hintText: 'Amount',
                 hintStyle: TextStyle(
                   color: Colors.grey,
                   fontSize: 13,
@@ -126,7 +96,27 @@ Widget input() {
                   ),
                   borderRadius: BorderRadius.circular(8),
                 )),
-          )
+          ),
+          const Yheight(20),
+          TextField(
+            decoration: InputDecoration(
+                filled: true,
+                fillColor: Color(0xffC4C4C4).withOpacity(0.21),
+                contentPadding: const EdgeInsets.all(19),
+                hintText: 'Delivery Fee',
+                hintStyle: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color(0xffC4C4C4).withOpacity(0.21),
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                )),
+          ),
         ],
       ),
     ),
@@ -147,9 +137,9 @@ Widget button() {
           height: 60,
           width: double.infinity,
           child: Padding(
-            padding: EdgeInsets.fromLTRB(00.0, 0.0, 0.0, 0.0),
+            padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
             child: Center(
-                child: Text("REGISTER",
+                child: Text("CREATE NEW PRODUCT",
                     style: GoogleFonts.roboto(
                         fontSize: 14,
                         fontWeight: FontWeight.w900,
@@ -161,71 +151,67 @@ Widget button() {
   );
 }
 
-Widget noaccount(context) {
-  return Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Column(
-        children: [
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Login(),
-                ),
-              );
-            },
-            child: Text(
-              "Already have an account? Sign In",
-              style: GoogleFonts.roboto(
-                  color: Color(0xff141421).withOpacity(0.38),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-          const Yheight(10),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Storeregister(),
-                ),
-              );
-            },
-            child: Text(
-              "Sign up as Store",
-              style: GoogleFonts.roboto(
-                  color: Color(0xff141421),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-        ],
-      ),
-    ],
-  );
-}
-
-class _RegisterState extends State<Register> {
+class _NewproductState extends State<Newproduct> {
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
         body: ListView(
-          shrinkWrap: true,
-          physics: ScrollPhysics(),
-          children: <Widget>[
-            headers(),
-            const Yheight(39),
-            input(),
-            const Yheight(39),
-            button(),
-            const Yheight(23),
-            noaccount(context)
+            shrinkWrap: true,
+            physics: ScrollPhysics(),
+            children: <Widget>[
+              const Yheight(40),
+              header(),
+              const Yheight(40),
+              headers(),
+              const Yheight(30),
+              input(),
+              const Yheight(40),
+              button()
+            ]),
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+              icon: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Storedashboard(),
+                      ),
+                    );
+                  },
+                  child: Icon(Icons.home)),
+              label: ("Home"),
+            ),
+            BottomNavigationBarItem(
+              icon: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Newproduct(),
+                      ),
+                    );
+                  },
+                  child: Icon(Icons.category)),
+              label: ("Create Product"),
+            ),
+            BottomNavigationBarItem(
+              icon: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Storeaccount(),
+                      ),
+                    );
+                  },
+                  child: Icon(Icons.person)),
+              label: ("Your Profile"),
+            ),
           ],
         ),
       ),

@@ -350,13 +350,6 @@ class _CartState extends State<Cart> {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xff141421),
-          leading: IconButton(
-            color: Colors.white,
-            icon: Icon(Icons.arrow_back_ios),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
           title: Text(
             title,
             style: TextStyle(color: Colors.white),

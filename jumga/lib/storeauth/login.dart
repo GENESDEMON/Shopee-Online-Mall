@@ -1,31 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jumga/authentication/forgotpass.dart';
-import 'package:jumga/authentication/register.dart';
-import 'package:jumga/storeauth/login.dart';
-import 'package:jumga/tabs/dashboard.dart';
+import 'package:jumga/store/dashboard.dart';
+import 'package:jumga/storeauth/register.dart';
 import 'package:jumga/utils/margin.dart';
 
-class Login extends StatefulWidget {
+class Storelogin extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _StoreloginState createState() => _StoreloginState();
 }
 
 //Forgot Password
-Widget forgotpass(context) {
+Widget forgotpass() {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Forgotpass(),
-            ),
-          );
-        },
+        onTap: () {},
         child: Padding(
           padding: const EdgeInsets.fromLTRB(250, 0, 0, 0),
           child: Text(
@@ -129,7 +120,7 @@ Widget button(context) {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => Dashboard(),
+          builder: (context) => Storedashboard(),
         ),
       );
     },
@@ -163,62 +154,48 @@ Widget noaccount(context) {
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      Column(
-        children: [
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Register(),
-                ),
-              );
-            },
-            child: Text(
-              "Don’t have an account? Sign Up",
-              style: GoogleFonts.roboto(
-                  color: Color(0xff141421).withOpacity(0.38),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600),
+      InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Storeregister(),
             ),
-          ),
-          const Yheight(10),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Storelogin(),
-                ),
-              );
-            },
-            child: Text(
-              "STORE LOGIN",
-              style: GoogleFonts.roboto(
-                  color: Color(0xff141421),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-        ],
+          );
+        },
+        child: Text(
+          "Don’t have a store? Sign Up",
+          style: GoogleFonts.roboto(
+              color: Color(0xff141421).withOpacity(0.38),
+              fontSize: 13,
+              fontWeight: FontWeight.w600),
+        ),
       ),
     ],
   );
 }
 
-class _LoginState extends State<Login> {
+class _StoreloginState extends State<Storelogin> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios, color: Color(0xff141421)),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ),
         body: ListView(
           shrinkWrap: true,
           physics: ScrollPhysics(),
           children: <Widget>[
-            const Yheight(50),
-            forgotpass(context),
+            const Yheight(20),
+            forgotpass(),
             const Yheight(0),
             headers(),
             const Yheight(39),

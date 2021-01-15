@@ -1,63 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jumga/authentication/forgotpass.dart';
-import 'package:jumga/authentication/register.dart';
 import 'package:jumga/storeauth/login.dart';
-import 'package:jumga/tabs/dashboard.dart';
 import 'package:jumga/utils/margin.dart';
 
-class Login extends StatefulWidget {
+class Storeregister extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _StoreregisterState createState() => _StoreregisterState();
 }
 
-//Forgot Password
-Widget forgotpass(context) {
-  return Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Forgotpass(),
-            ),
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(250, 0, 0, 0),
-          child: Text(
-            "Forgot Password",
-            style: GoogleFonts.roboto(
-                color: Color(0xff141421).withOpacity(0.38),
-                fontSize: 13,
-                fontWeight: FontWeight.w600),
-          ),
-        ),
-      ),
-    ],
-  );
-}
-
-//Welcome headers widget
 Widget headers() {
   return Container(
     child: Padding(
-      padding: const EdgeInsets.fromLTRB(43, 230, 0, 0),
+      padding: const EdgeInsets.fromLTRB(43, 150, 0, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Welcome",
+            "Hey",
             style: GoogleFonts.roboto(
                 color: Color(0xff141421),
                 fontSize: 48,
                 fontWeight: FontWeight.w900),
           ),
           Text(
-            "Back!",
+            "Welcome!",
             style: GoogleFonts.roboto(
                 color: Color(0xff141421),
                 fontSize: 48,
@@ -76,6 +42,27 @@ Widget input() {
       padding: const EdgeInsets.fromLTRB(43, 0, 43, 0),
       child: Column(
         children: [
+          //Fullname
+          TextField(
+            decoration: InputDecoration(
+                filled: true,
+                fillColor: Color(0xffC4C4C4).withOpacity(0.21),
+                contentPadding: const EdgeInsets.all(19),
+                hintText: 'Store Name',
+                hintStyle: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color(0xffC4C4C4).withOpacity(0.21),
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                )),
+          ),
+          const Yheight(20),
           //Email Address
           TextField(
             decoration: InputDecoration(
@@ -83,6 +70,27 @@ Widget input() {
                 fillColor: Color(0xffC4C4C4).withOpacity(0.21),
                 contentPadding: const EdgeInsets.all(19),
                 hintText: 'Email address',
+                hintStyle: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color(0xffC4C4C4).withOpacity(0.21),
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                )),
+          ),
+          const Yheight(20),
+          //Phone Number
+          TextField(
+            decoration: InputDecoration(
+                filled: true,
+                fillColor: Color(0xffC4C4C4).withOpacity(0.21),
+                contentPadding: const EdgeInsets.all(19),
+                hintText: 'Phone Number',
                 hintStyle: TextStyle(
                   color: Colors.grey,
                   fontSize: 13,
@@ -123,16 +131,9 @@ Widget input() {
   );
 }
 
-Widget button(context) {
+Widget button() {
   return GestureDetector(
-    onTap: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Dashboard(),
-        ),
-      );
-    },
+    onTap: () {},
     child: Container(
       child: Padding(
         padding: EdgeInsets.only(left: 40, right: 40),
@@ -146,7 +147,7 @@ Widget button(context) {
           child: Padding(
             padding: EdgeInsets.fromLTRB(00.0, 0.0, 0.0, 0.0),
             child: Center(
-                child: Text("LOGIN",
+                child: Text("REGISTER",
                     style: GoogleFonts.roboto(
                         fontSize: 14,
                         fontWeight: FontWeight.w900,
@@ -163,68 +164,50 @@ Widget noaccount(context) {
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      Column(
-        children: [
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Register(),
-                ),
-              );
-            },
-            child: Text(
-              "Don’t have an account? Sign Up",
-              style: GoogleFonts.roboto(
-                  color: Color(0xff141421).withOpacity(0.38),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600),
+      InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Storelogin(),
             ),
-          ),
-          const Yheight(10),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Storelogin(),
-                ),
-              );
-            },
-            child: Text(
-              "STORE LOGIN",
-              style: GoogleFonts.roboto(
-                  color: Color(0xff141421),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-        ],
+          );
+        },
+        child: Text(
+          "Already have an account? Sign In",
+          style: GoogleFonts.roboto(
+              color: Color(0xff141421).withOpacity(0.38),
+              fontSize: 13,
+              fontWeight: FontWeight.w600),
+        ),
       ),
     ],
   );
 }
 
-class _LoginState extends State<Login> {
-  @override
+class _StoreregisterState extends State<Storeregister> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios, color: Color(0xff141421)),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ),
         body: ListView(
           shrinkWrap: true,
           physics: ScrollPhysics(),
           children: <Widget>[
-            const Yheight(50),
-            forgotpass(context),
-            const Yheight(0),
             headers(),
             const Yheight(39),
             input(),
             const Yheight(39),
-            button(context),
+            button(),
             const Yheight(23),
             noaccount(context)
           ],
