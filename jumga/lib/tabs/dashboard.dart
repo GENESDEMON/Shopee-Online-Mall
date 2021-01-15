@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jumga/product/details.dart';
+import 'package:jumga/tabs/account.dart';
+import 'package:jumga/tabs/cart.dart';
 import 'package:jumga/utils/margin.dart';
 
 class Dashboard extends StatefulWidget {
+  final GlobalKey<ScaffoldState> scaffoldKey;
+  const Dashboard({Key key, this.scaffoldKey}) : super(key: key);
   @override
   _DashboardState createState() => _DashboardState();
 }
@@ -462,14 +466,9 @@ Widget images(context) {
 }
 
 class _DashboardState extends State<Dashboard> {
-  bool _isLoading = true;
-  int _selectedIndex = 0;
-  List<Widget> _tabPages = [];
-  void _onItemSelected(int index) {
-    if (_isLoading) return;
-    setState(() {
-      _selectedIndex = index;
-    });
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -487,40 +486,46 @@ class _DashboardState extends State<Dashboard> {
               simpletext(),
               images(context),
             ]),
-        bottomNavigationBar: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            BottomNavigationBar(
-              items: <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.assignment),
-                  label: 'stores',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_bag),
-                  label: 'your cart',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.account_circle),
-                  label: 'accounts',
-                ),
-              ],
-              type: BottomNavigationBarType.fixed,
-              backgroundColor: Color(0xff141421),
-              currentIndex: _selectedIndex,
-              onTap: _isLoading ? (i) {} : _onItemSelected,
-              selectedItemColor: Colors.white,
-              unselectedItemColor: Colors.grey[400],
-              showUnselectedLabels: true,
-              iconSize: 16,
-              selectedLabelStyle: TextStyle(fontSize: 11),
-              unselectedLabelStyle: TextStyle(fontSize: 11),
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+              icon: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Dashboard(),
+                      ),
+                    );
+                  },
+                  child: Icon(Icons.home)),
+              label: ("Home"),
+            ),
+            BottomNavigationBarItem(
+              icon: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Cart(),
+                      ),
+                    );
+                  },
+                  child: Icon(Icons.shopping_cart)),
+              label: ("Your Cart"),
+            ),
+            BottomNavigationBarItem(
+              icon: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Account(),
+                      ),
+                    );
+                  },
+                  child: Icon(Icons.person)),
+              label: ("Your Profile"),
             ),
           ],
         ),
